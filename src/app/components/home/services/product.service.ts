@@ -4,13 +4,14 @@ import { ProductDetail } from '../../../Models/ProductDetail';
 import { map, Observable } from 'rxjs';
 import { UserData } from '../../../Models/UserData';
 import { SaveResponse } from '../../../Models/SaveResponse';
+import { environment } from '../../../../appsettings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private apiUrl = 'http://localhost:3001'; // Replace with your API URL
+  private apiUrl = environment.apiUrl;
   
   constructor(private http :HttpClient) { }
 

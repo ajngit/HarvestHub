@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Authenticate } from '../Models/Authenticate';
 import { SaveResponse } from '../../../Models/SaveResponse';
+import { environment } from '../../../../appsettings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  private apiUrl = 'http://localhost:3001'; // Replace with your API URL
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

@@ -8,13 +8,14 @@ import { Customer } from '../../checkout/model/Customer';
 import { PaymentData } from '../../payment/Models/payment';
 import { Order } from '../../orderdetails/model/order';
 import { Review } from '../Models/Review';
+import { environment } from '../../../../appsettings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductRegistrationService {
 
-  private apiUrl = 'http://localhost:3001';
+  private apiUrl = environment.apiUrl;
   
   constructor(private http :HttpClient) { }
 
