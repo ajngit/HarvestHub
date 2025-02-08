@@ -1,0 +1,21 @@
+.detailimg{
+    width: 100%;
+    min-height: 60vh;
+    object-fit: cover;
+    border-top-left-radius: 5px; /* Radius for the top-left corner */
+    border-bottom-left-radius: 5px; /* Radius for the bottom-left corner */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(155, 207, 180);
+    border-top-left-radius: 0px;
+    border-bottom-left-radius:0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius:5px ;
+    padding: auto;
+    font-family: Palatino, 'Palatino', serif;
+}
+
+

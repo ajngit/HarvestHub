@@ -1,0 +1,32 @@
+<div class="container">
+    <section class="product-list">
+        <h2>Order List</h2>
+        <!-- <input type="text" id="search-bar" placeholder="Search products..."> -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Buyer Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>NetTotal</th>
+                    <th>OrderDate</th>
+                    <!-- <th>Actions</th> -->
+                </tr>
+            </thead>
+            <tbody *ngFor=" let order of this.OrderData">
+                <td>{{order.Buyer}}</td>
+                <td>{{order.Email}}</td>
+                <td>{{order.Phone}}</td>
+                <td>{{order.StreetAddress}} , {{order.ZipCode}}</td>
+                <td>{{order.ProductName}}</td>
+                <td>{{order.Quantity}}Kg</td>
+                <td>₹{{order.NetTotal}}</td>
+                <td>{{order.OrderDate |date :'fullDate'}}</td>
+                <!-- <td>Actions</td> -->
+            </tbody>
+        </table>
+    </section>
+</div>

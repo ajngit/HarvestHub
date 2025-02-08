@@ -1,0 +1,162 @@
+<app-header></app-header>
+<section class="py-5 " >
+	<div class="container">
+        <div class=" text-white text-center">
+            <h1 class="text-success"><b>Delivery Details</b></h1>
+            <hr>
+            <!-- <p>(3 Items)</p> -->
+            <div class="container">
+                
+                <div class="progress-bar">
+                    <div class="step ">
+                        <span class="step-number">1</span>
+                        <span class="step-title">Bag</span>
+                    </div>
+                    <div class="step active">
+                        <span class="step-number">2</span>
+                        <span class="step-title">Delivery Details</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Payment</span>
+                    </div>
+                </div>
+            </div>
+              
+            
+        </div>
+	</div>
+</section>
+<div class="container mt-5">
+
+
+    <div class="row ">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 for="" class="text-success">Add Billing Information</h3>
+
+
+                        <div class="text-secondary mt-4 mb-2">Billing Address</div>
+                        <div class="row mb-3">
+                            <div class="col-lg-8 col-md-6 col-xs-12">
+                                <input [(ngModel)]="this.CustomerData.StreetAddress" type="text" class="form-control" placeholder="Billing Address">
+                                <div *ngIf="this.isSubmitted==true &&(this.CustomerData.StreetAddress =='')" class="text-danger">
+                                    <div style="font-size: 0.8rem; margin-left: 10px;">Billing Address is required.</div>
+                                  </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-xs-12">
+                                <input [(ngModel)]="this.CustomerData.ZipCode"  type="text" class="form-control" placeholder="Zipcode">
+                                <div *ngIf="this.isSubmitted==true &&(this.CustomerData.ZipCode =='')" class="text-danger">
+                                    <div style="font-size: 0.8rem; margin-left: 10px;">ZipCode is required.</div>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="text-secondary mt-4 mb-2">Contact Info </div>
+                        <div class="mb-3">
+                            <input type="text" [(ngModel)]="this.CustomerData.ContactName" placeholder="ContactName" class="form-control">
+                            <div *ngIf="this.isSubmitted==true &&(this.CustomerData.ContactName =='')" class="text-danger">
+                                <div style="font-size: 0.8rem; margin-left: 10px;">ContactName is required.</div>
+                              </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="email" [(ngModel)]="this.CustomerData.Email" class="form-control" placeholder="Email">
+                                <div *ngIf="this.isSubmitted==true &&(this.CustomerData.Email =='')" class="text-danger">
+                                    <div style="font-size: 0.8rem; margin-left: 10px;">Email is required.</div>
+                                  </div>
+                            </div>
+                            <div class="col">
+                                <input type="text" [(ngModel)]="this.CustomerData.Phone" class="form-control" placeholder="Phone">
+                                <div *ngIf="this.isSubmitted==true &&(this.CustomerData.Phone =='')" class="text-danger">
+                                    <div style="font-size: 0.8rem; margin-left: 10px;">Phone is required.</div>
+                                  </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div  class="align-right" >
+                    <button  type="button" (click)="saveCustomer()"  style="height: 40px;" class="btn btn-success rounded shadow mt-2  d-flex justify-content-end"  >Add & Continue+</button>
+                    </div>
+                   
+                <!-- [routerLink]="['/payment']" -->
+            
+        </div>
+        <!-- <div class="card  shadow col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class=" card-body" id="rightPanel">
+                <h6 class="text-uppercase"><small>ORDER</small></h6>
+                <h4 class="boldFont">INFO</h4>
+
+                <div class="my-4 d-flex justify-content-between align-items-center">
+                    <div>cardamom <br><span class="text-secondary"><small>(100gm) x 2</small></span></div>
+                    <div class="w-100 mx-3 borderDotted"></div>
+                    <div>$10.00</div>
+                </div>
+                <div class="my-4 d-flex justify-content-between align-items-center">
+                    <div style="min-width:130px">Walnuts<br><span class="text-secondary"><small>(100gm) x
+                                1</small></span></div>
+                    <div class="w-100 mx-3 borderDotted"></div>
+                    <div>$10.00</div>
+                </div>
+                <div class="my-4">
+                    <h6>Apply discount code</h6>
+                    <div class="my-3">
+                        <input type="text" class="bg-white form-control" placeholder="Code">
+                    </div>
+                </div>
+                <hr>
+                <div class="my-4 fs-4">
+                    <div class="d-flex justify-content-between">
+                        <div class="">Total</div>
+                        <div class="">$20.00</div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center ">
+                    <div><input class="" type="checkbox" id="agreeTerms"></div>
+                    <div class="mx-4 "><label for="agreeTerms"><small>I agree to the <a
+                                    class="text-success text-decoration-none" href="#">Terms and Conditions</a>
+                                and the <a class="text-success text-decoration-none" href="#">Automatic Renewal
+                                    Terms</a> above</small></label></div>
+                </div>
+                <div class="my-4">
+                    <google-pay-button environment="TEST" buttonType="buy" buttonSizeMode="fill"
+                        [paymentRequest]="paymentRequest"
+                        (loadpaymentdata)="onLoadPaymentData($event)"></google-pay-button>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+
+<!-- <div class="container">
+    <section class="product-list">
+        <h2>Saved Addressess</h2>
+        <input type="text" id="search-bar" placeholder="Search Users...">
+        <table>
+            <thead>
+                <tr>
+                    <th>Street Addres</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+             <tbody *ngFor="let user of UserData">
+                <td>{{user.UserName}}</td>
+                <td>{{user.Email}}</td>
+                <td>{{user.Phone}}</td>
+                <td>{{user.Address}}</td>
+                <td></td>
+            </tbody> 
+        </table>
+    </section>
+    <div  class="align-right">
+        <button [routerLink]="['/payment']"  style="height: 40px;" class="btn btn-success rounded shadow mt-2  d-flex justify-content-end" >Save & Continue +</button>
+    </div>
+</div> -->
+<app-footer></app-footer>

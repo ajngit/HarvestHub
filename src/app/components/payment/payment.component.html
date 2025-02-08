@@ -1,0 +1,62 @@
+<app-header></app-header>
+   <div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-8">
+            <div class="card rounded m-5 shadow col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class=" card-body" id="rightPanel">
+                    <h6 class="text-uppercase"><small>ORDER</small></h6>
+                    <h4 class="boldFont">INFO</h4>
+    
+                    <div *ngFor="let data of CartData" class="my-4 d-flex justify-content-between align-items-center">
+                        <div>{{data.ProductName}} <br><span class="text-secondary"><small>{{data.Quantity}}Kg x ₹{{data.Price}}</small></span></div>
+                        <div class="w-100 mx-3 borderDotted"></div>
+                        <div>₹{{data.NetTotal}}</div>
+                    </div>
+                    
+                    <div class="my-4">
+                        <h6 class="text-success">ADD CARD DETAILS</h6>
+                        <div class="my-3">
+                            <input [(ngModel)]="PaymentData.CardNumber"  type="text" class="bg-white form-control" placeholder="CARD Number">
+                            <label style="font-size: smaller;" class="text-danger" *ngIf="Submitted && PaymentData.CardNumber==''">CardNumber Required</label>
+                        </div>
+                        <div class="my-3">
+                            <input [(ngModel)]="PaymentData.CVV"  type="number" class="bg-white form-control" placeholder="CVV">
+                            <label style="font-size: smaller;" class="text-danger" *ngIf="Submitted && PaymentData.CardNumber==''">CVV Required</label>
+                        </div>
+                        <div class="my-3">
+                            <input [(ngModel)]="PaymentData.Expiry"  type="text" class="bg-white form-control" placeholder="Expiry Date">
+                            <label style="font-size: smaller;" class="text-danger" *ngIf="Submitted && PaymentData.CardNumber==''">Expiry Required</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: smaller;" class="text-danger" *ngIf="errormsg">{{this.errormsg}}</label>
+
+                    </div>
+                    <hr>
+                    <div class="my-4 fs-4">
+                        <div class="d-flex justify-content-between">
+                            <div class="">Total</div>
+                            <div class="">₹{{this.SubTotal+40}}</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center ">
+                        <div><input class="" type="checkbox" id="agreeTerms"></div>
+                        <div class="mx-4 "><label for="agreeTerms"><small>I agree to the <a
+                                        class="text-success text-decoration-none" href="#">Terms and Conditions</a>
+                                    and the <a class="text-success text-decoration-none" href="#">Automatic Renewal
+                                        Terms</a> above</small></label></div>
+                    </div>
+
+                    <div  class="align-right" >
+                        <button  type="button" (click)="Payment()"   style="height: 40px;" class="btn btn-success rounded shadow mt-2  d-flex justify-content-end"  >Pay</button>
+                        </div>
+                    
+                </div>
+            </div> 
+        </div>
+        <div class="col-2"></div>
+    </div>
+   </div>
+
+   <app-footer></app-footer>

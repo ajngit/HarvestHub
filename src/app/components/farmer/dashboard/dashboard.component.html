@@ -1,0 +1,33 @@
+<app-logout></app-logout>
+<div class="container mt-3" style="min-height: 60vh;" >
+    <div class="row ">
+        <div class="col-12" >
+            <div class="card custom-card m-5">
+                <img class="card-img-top imgstyle"  src="../../../../assets/1306571 (1).jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">PRODUCT MANAGEMENT</h4>
+                    <p class="card-text">Farmers management allows users to easily create, edit, delete, and view products within the system. This streamlined functionality simplifies inventory management, helping farmers efficiently track and manage their agricultural offerings.</p>
+                    <a [routerLink]="['/addproduct']"   class="btn btn-success btn-sm mt-auto">VIEW PRODUCTS</a>
+                </div>
+            </div>
+            <div class="card custom-card  m-5">
+                <img class="card-img-top imgstyle" src="../../../../assets/grocery-order-basket-of-food-goods-from-online-vector-42842750.jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">ORDER MANAGEMENT</h4>
+                    <p class="card-text">Order management simplifies the process of tracking and fulfilling customer orders, ensuring timely delivery and accurate inventory control. </p>
+                    <a [routerLink]="['/farmerorders']"   class="btn btn-success btn-sm mt-auto">VIEW ORDERS</a>
+                </div>
+            </div>
+            <div class="card custom-card  m-5">
+                <img class="card-img-top imgstyle" src="../../../../assets/user-icon-vector.jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">ACCOUNT SETTINGS</h4>
+                    <p class="card-text">The account settings dashboard provides users with a centralized location to manage their personal information, security preferences, and notification settings.</p>
+                    <a [routerLink]="['/profile']"   class="btn btn-success btn-sm mt-auto">VIEW ACCOUNT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+

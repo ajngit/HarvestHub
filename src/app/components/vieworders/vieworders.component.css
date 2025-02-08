@@ -1,0 +1,91 @@
+.orders-list {
+    margin-top: 20px;
+}
+
+.order {
+    background-color: #e9f5e9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-header h3 {
+    margin: 0;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.status.shipped {
+    color: #4CAF50; /* Green for shipped */
+}
+
+.status.processing {
+    color: #FFA500; /* Orange for processing */
+}
+
+.order-details p {
+    margin: 5px 0;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px; /* Increased padding */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em; /* Slightly larger text */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s, transform 0.3s; /* Transition for smooth effects */
+}
+
+.btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.continue-shopping {
+    position: relative; /* Positioning for the pseudo-element */
+}
+
+.continue-shopping::after {
+    content: '🛒'; /* Shopping cart emoji */
+    position: absolute;
+    right: -5px; /* Position it to the right */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust to vertical center */
+
+}
+
+.product-info {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center vertically */
+}
+
+.product-image {
+    width: 80px; /* Set a fixed width for the image */
+    height: 80px; /* Set a fixed height */
+    border-radius: 5px; /* Rounded corners */
+    margin-right: 15px; /* Space between image and text */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+.product-description {
+    flex-grow: 1; /* Allow this to grow and take up remaining space */
+}
+

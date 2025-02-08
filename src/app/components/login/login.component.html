@@ -1,0 +1,146 @@
+
+
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+    <style>
+      .background-radial-gradient {
+        background-color: hsl(144, 76%, 59%);
+        background-image: radial-gradient(650px circle at 0% 0%,
+            hsl(140, 47%, 41%) 15%,
+            hsl(119, 45%, 45%) 35%,
+            hsl(120, 65%, 35%) 75%,
+            hsl(152, 100%, 23%) 80%,
+            transparent 100%),
+          radial-gradient(1250px circle at 100% 100%,
+          hsl(140, 47%, 41%) 15%,
+            hsl(119, 45%, 45%) 35%,
+            hsl(120, 65%, 35%) 75%,
+            hsl(152, 100%, 23%) 80%,
+            transparent 100%);
+      }
+  
+      #radius-shape-1 {
+        height: 220px;
+        width: 220px;
+        top: -60px;
+        left: -130px;
+        background: radial-gradient(#006b14, #8aef1d);
+        overflow: hidden;
+      }
+  
+      #radius-shape-2 {
+        border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+        bottom: -60px;
+        right: -110px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(#006b14, #8aef1d);
+        overflow: hidden;
+      }
+  
+      .bg-glass {
+        background-color: hsla(0, 0%, 100%, 0.9) !important;
+        backdrop-filter: saturate(200%) blur(25px);
+      }
+    </style>
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+            HARVEST HUB <br />
+            <span style="color: hsl(122, 97%, 86%)">Explore Freshest !</span>
+          </h1>
+          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+            Welcome to Harvest Hub, where fresh meets local. Explore a vibrant marketplace where farmers can showcase their goods, and customers can find the best seasonal produce, all while supporting community agriculture. Elevate your meals with the freshest ingredients, sourced right from your backyard!
+          </p>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass">
+            <div class="card-body px-4 py-5 px-md-5">
+              <!-- <form>
+                
+                <div class="form-outline mb-4">
+                  <input [(ngModel)]="email" type="email" id="form3Example3" class="form-control" />
+                  <label class="form-label" for="form3Example3">Email address</label>
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <input [(ngModel)]="pswd" type="password" id="form3Example4" class="form-control" />
+                  <label class="form-label" for="form3Example4">Password</label>
+                </div>
+                <button (click)="login()" type="submit" class="btn btn-success btn-block mb-4">
+                  Log in
+                </button><br><br>
+                <label class="form-check-label" for="form2Example33">
+                    Create an Account? <a href="/register">Register</a>
+                  </label>
+               
+              </form> -->
+              <h5 >Log in to your account</h5>
+              <p >Enter your account details here</p>
+              <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input
+                    formControlName="email"
+                    type="text"
+                    id="form3Example3"
+                    placeholder="Email"
+                    class="form-control"
+                    required
+                  />
+                  <div *ngIf="this.IsSubmitted==true &&(!this.loginForm.value.email || this.loginForm.value.email =='')" class="text-danger">
+                    <div style="font-size: 0.8rem; margin-left: 10px;">Email is required.</div>
+                  </div>
+                </div>
+              
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input
+                    formControlName="password"
+                    type="password"
+                    id="form3Example4"
+                    placeholder="Password"
+                    class="form-control"
+                    required
+                  />
+                  <div *ngIf="this.IsSubmitted==true &&(!this.loginForm.value.password || this.loginForm.value.password =='')" class="text-danger">
+                    <div style="font-size: 0.8rem; margin-left: 10px;">Password is required.</div>
+                  </div>
+                </div>
+              
+                <!-- Role selection -->
+                <div class="form-outline mb-4">
+                  <select formControlName="role" id="form3Example4" class="form-control" required>
+                    <option value="0">User</option>
+                    <option value="1">Farmer</option>
+                  </select>
+                  <div  *ngIf="this.IsSubmitted==true &&(!this.loginForm.value.role && this.loginForm.value.role==0)" class="text-danger">
+                    <div style="font-size: 0.8rem; margin-left: 10px;" >Role is required.</div>
+                  </div>
+                </div>
+              
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-success btn-block mb-4" >Log in</button><br>
+              
+                <!-- Register link -->
+                <label class="form-check-label" for="form2Example33">
+                  Create an Account? <a class="signup" href="/register">Register</a>
+                </label>
+              </form>
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->
+  
+  

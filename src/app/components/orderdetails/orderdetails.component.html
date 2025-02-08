@@ -1,0 +1,36 @@
+
+    <div class="container">
+        <header class="header">
+            <h1>Harvest Hub</h1>
+        </header>
+        
+        <main class="main-content">
+            <h2>Order Confirmed!</h2>
+            <p class="thank-you">Thank you for your order!</p>
+
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div class="product">
+                    <img src="{{this.OrderData.ImageURL}}" style=" height: 100px ;width: 100px;" class="product-image">
+                    <div class="product-details">
+                        <p><strong>Product:</strong> {{this.OrderData.ProductName}}</p>
+                        <p><strong>Quantity:</strong>{{this.OrderData.Quantity}}</p>
+                        <p><strong>Total:</strong>₹{{this.OrderData.NetTotal}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="customer-info">
+                <h3>Your Information</h3>
+                <p><strong>Name:</strong> {{this.Customer.ContactName}}</p>
+                <p><strong>Email:</strong> {{this.Customer.Email}}</p>
+                <p><strong>Address:</strong>{{ this.Customer.StreetAddress}}</p>
+            </div>
+
+            <div class="footer">
+                
+                <a href="index.html" class="btn text-light">Continue Shopping</a>
+            </div>
+        </main>
+    </div>
+

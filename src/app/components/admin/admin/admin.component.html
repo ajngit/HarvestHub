@@ -1,0 +1,32 @@
+<app-logout></app-logout>
+<div class="container mt-3" style="min-height: 60vh;" >
+    <div class="row ">
+        <div class="col-12" >
+            <div class="card custom-card m-5">
+                <img class="card-img-top imgstyle" src="../../../../assets/1306571 (1).jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">PRODUCTS</h4>
+                    <p class="card-text">Product management simplifies the process of tracking  products, ensuring accurate inventory control.</p>
+                    <a [routerLink]="['/allproducts']"   class="btn btn-success btn-sm mt-auto">VIEW PRODUCTS</a>
+                </div>
+            </div>
+            <div class="card custom-card  m-5">
+                <img class="card-img-top imgstyle" src="../../../../assets/grocery-order-basket-of-food-goods-from-online-vector-42842750.jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title"> ORDERS</h4>
+                    <p class="card-text">Order management simplifies the process of tracking and fulfilling customer orders, ensuring timely delivery and accurate inventory control. </p>
+                    <a [routerLink]="['/adminorders']"   class="btn btn-success btn-sm mt-auto">VIEW ORDERS</a>
+                </div>
+            </div>
+            <div class="card custom-card  m-5">
+                <img class="card-img-top imgstyle" src="../../../../assets/user-icon-vector.jpg" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">FARMERS</h4>
+                    <p class="card-text">The Farmers dashboard provides a centralized location to manage  personal information, security preferences, and notification settings.</p>
+                    <a [routerLink]="['/farmerinfo']"   class="btn btn-success btn-sm mt-auto">VIEW ACCOUNT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

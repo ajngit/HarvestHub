@@ -1,0 +1,40 @@
+.custom-card {
+    height: 80%; /* Reduce card height by 30% */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.custom-card .card-img-top {
+    height: 50%; /* Set image height to half of the card height */
+    object-fit: cover; /* Ensure images cover the card area */
+    border:  1px rgba(0, 0, 0, 0.05) solid ;
+}
+
+.card 
+{ background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+    transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12), 0.3s box-shadow, 0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+
+}
+.card:hover {
+     transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06); }
+
+.spiceheader{
+    width: 100%; /* Adjust width as needed */
+            height: 100vh; /* Adjust height as needed */
+            background-image: url('../../../assets/harvestbg.jpeg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Roboto', sans-serif;   
+}
+
+.spiceheader .row{
+margin-top: 100px;
+
+}
+
+.spiceheader p{
+    font-family: Palatino, 'Palatino', serif;
+}

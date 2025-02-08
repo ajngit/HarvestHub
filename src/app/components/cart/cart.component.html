@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+
+<section class="py-5 " >
+	<div class="container">
+        <div class=" text-white text-center">
+            <h1 class="text-success">My Bag</h1>
+            <!-- <p>(3 Items)</p> -->
+            <div class="container">
+                
+                <div class="progress-bar">
+                    <div class="step active">
+                        <span class="step-number">1</span>
+                        <span class="step-title">Bag</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-title">Delivery Details</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Payment</span>
+                    </div>
+                </div>
+            </div>
+              
+            
+        </div>
+	</div>
+</section>
+<main class="page">
+    <section class="shopping-cart  ">
+        <div class="container">
+           
+           
+                <div class="row">
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <div class="items">
+                           
+                            <div class="product card shadow" *ngFor="let data of this.CartData">
+                                
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <img class="img-fluid mx-auto d-block image card" src="{{data.ImageURL}}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="info">
+                                            <div class="row">
+                                                <div class="col-md-5 product-name">
+                                                    <div class="product-name">
+                                                        <a class="text-success" href="#">{{data.ProductName}}</a>
+                                                        <div class="product-info">
+                                                            <div>Price: <span class="value">{{data.Price}}</span></div>
+                                                            <!-- <div>Net Total: <span class="value">{{data.NetTotal}}</span></div> -->
+                                                            <!-- <div>Memory: <span class="value">32GB</span></div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 quantity">
+                                                    <label for="quantity">Quantity:</label>(Kg)
+                                                    <input id="quantity"  type="number" [(ngModel)]="data.Quantity" (ngModelChange)="Quantitychange(data)"  class="form-control quantity-input">
+                                                </div>
+                                                <div class="col-md-3 price">
+                                                    <span> ₹{{data.NetTotal}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4  mb-3 bg-light card  rounded shadow" >
+                        <div class="summary">
+                            <h3>Summary</h3>
+                            <div class="summary-item"><span class="text">Subtotal</span><span class="price"> ₹{{this.SubTotal}}</span></div>
+                            <div class="summary-item"><span class="text">Discount</span><span class="price"> ₹0</span></div>
+                            <div class="summary-item"><span class="text">Shipping</span><span class="price"> ₹{{this.DeliveryFee}}</span></div>
+                            <div class="summary-item"><span class="text">Total</span><span class="price"> ₹{{this.SubTotal+this.DeliveryFee}}</span></div>
+                           <button (click)="Checkout()" type="button" class="btn btn-lg btn-block btn-success">Checkout</button>
+                        </div>
+                    </div>
+                </div> 
+            
+        </div>
+   </section>
+</main>
+
+<app-footer></app-footer>

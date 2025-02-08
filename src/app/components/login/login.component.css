@@ -1,0 +1,16 @@
+.signup{
+    text-decoration: none;
+    color: green;
+    }
+    
+    .signup:hover{
+        color: rgb(5, 77, 5);
+    }
+    
+    p{
+        opacity: 75%;
+    }
+    
+    h5{
+        opacity: 80%;
+    }
