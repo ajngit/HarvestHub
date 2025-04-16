@@ -4,18 +4,19 @@ import { ProductRegistrationService } from '../details/services/product-registra
 import { Customer } from '../checkout/model/Customer';
 import { Order } from './model/order';
 import { map, Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-orderdetails',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './orderdetails.component.html',
   styleUrl: './orderdetails.component.css'
 })
 export class OrderdetailsComponent {
   Customer: Customer=new Customer();
   UserID: any;
-  OrderData:Order=new Order();
+  OrderData:Order[]=[];
   state$: Observable<any> | undefined;
   OrderID: number=0;
 
@@ -73,12 +74,12 @@ export class OrderdetailsComponent {
     this.ProductRegistrationService.GetOrder(this.OrderID).subscribe((data)=>{
       console.log('pdata',data);
       this.OrderData=data;
-      if(data instanceof Array){
-       this.OrderData=data[0];
-      }
-     if( !this.OrderData ){
-      this.OrderData=new Order();
-     }
+    //   if(data instanceof Array){
+    //    this.OrderData=data[0];
+    //   }
+    //  if( !this.OrderData ){
+    //   this.OrderData=new Order();
+    //  }
     })
   }
 }

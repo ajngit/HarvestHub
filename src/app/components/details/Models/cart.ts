@@ -1,9 +1,10 @@
 
 export class Cart{
+    CartItemID :number=0;
     ImageURL:string=''
     Price: number =0 ;
     ProductName:string=''
-    ProductRegID : number =0 ;
+    cartItemID : number =0 ;
     ProductID    : number =0 ;
     Quantity     : number =0 ;
     Discount     : number =0 ;

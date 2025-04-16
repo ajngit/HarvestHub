@@ -10,12 +10,12 @@
 
             <div class="order-summary">
                 <h3>Order Summary</h3>
-                <div class="product">
-                    <img src="{{this.OrderData.ImageURL}}" style=" height: 100px ;width: 100px;" class="product-image">
+                <div class="product" *ngFor="let order of this.OrderData">
+                    <img src="{{order.ImageURL}}" style=" height: 100px ;width: 100px;" class="product-image">
                     <div class="product-details">
-                        <p><strong>Product:</strong> {{this.OrderData.ProductName}}</p>
-                        <p><strong>Quantity:</strong>{{this.OrderData.Quantity}}</p>
-                        <p><strong>Total:</strong>₹{{this.OrderData.NetTotal}}</p>
+                        <p><strong>Product:</strong> {{order.ProductName}}</p>
+                        <p><strong>Quantity:</strong>{{order.Quantity}}</p>
+                        <p><strong>Total:</strong>₹{{order.NetTotal}}</p>
                     </div>
                 </div>
             </div>

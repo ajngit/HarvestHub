@@ -30,6 +30,15 @@ export class ProductRegistrationService {
     });
   }
 
+  SaveOrderWithItems( data: any): Observable<SaveResponse> {
+    const url = `${this.apiUrl}/saveOrderWithItems`;
+    return this.http.post<SaveResponse>(url, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }) 
+    });
+  }
+
   SaveCustomer( data: Customer): Observable<SaveResponse> {
     const url = `${this.apiUrl}/saveCustomer`;
     return this.http.post<SaveResponse>(url, data, {
@@ -87,10 +96,10 @@ export class ProductRegistrationService {
     });
   }
 
-  GetOrder( ID:number): Observable<Order> {
+  GetOrder( ID:number): Observable<Order[]> {
     
     const url = `${this.apiUrl}/getorderinfo`;
-     return  this.http.get<Order>(url , {
+     return  this.http.get<Order[]>(url , {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }) ,
@@ -146,6 +155,19 @@ export class ProductRegistrationService {
     params = params.append('ReviewID', ReviewID);
     return this.http.delete<SaveResponse>(
       this.apiUrl + '/deletereview',
+      {
+        params: params,
+      }
+    ).pipe(map((response) => response));
+  }
+
+  DeleteCartItem(
+    CartItemID: number
+  ): Observable<SaveResponse> {
+    let params = new HttpParams();
+    params = params.append('CartItemID', CartItemID);
+    return this.http.delete<SaveResponse>(
+      this.apiUrl + '/deletecartitem',
       {
         params: params,
       }

@@ -19,13 +19,13 @@ import { SaveResponse } from '../../Models/SaveResponse';
 })
 export class CartComponent {
 
-  ProductRegID: any;
+  CartItemID: any;
   state$: any;
   Registration : Registration = new Registration();
   CartData :Cart[]=[];
   UserID: any;
   SubTotal: number=0;
-  DeliveryFee : number=40;
+  DeliveryFee : number=0;
   ProductRegDetails: Registration[]=[];
 
   constructor(private ProductService : ProductService,
@@ -38,7 +38,7 @@ export class CartComponent {
   }
 
   async ngOnInit(){
-    this.ProductRegID= JSON.parse(this.getProductRegID(), this.ProductRegID);
+   // this.cartItemID= JSON.parse(this.getcartItemID(), this.cartItemID);
     this.UserID= JSON.parse(this.getUserID(), this.UserID);
    
   this.getCart();
@@ -55,7 +55,7 @@ export class CartComponent {
      }
      else{
       this.CartData.forEach((data)=>{
-         this.SubTotal +=data.NetTotal;
+         this.SubTotal +=data.Quantity*data.Price;
       })
      }
     })
@@ -63,10 +63,10 @@ export class CartComponent {
 
   
 
-  getProductRegID(): string {
-    let ProductRegID = localStorage.getItem('ProductRegID');
-    if(ProductRegID){
-      return ProductRegID;
+  getcartItemID(): string {
+    let cartItemID = localStorage.getItem('cartItemID');
+    if(cartItemID){
+      return cartItemID;
     }else{
       return '';
     }
@@ -86,44 +86,81 @@ export class CartComponent {
     data.NetTotal=data.Price*data.Quantity;
     this.SubTotal=0;
     this.CartData.forEach((data)=>{
-      this.SubTotal +=data.NetTotal;
+      this.SubTotal +=data.Price*data.Quantity;
    })
   }
 
-  async Checkout(){
-
-    debugger;
-    this.CartData.forEach((data)=>{
-
-      this.Registration.ProductID=data.ProductID;
-      this.Registration.NetTotal =data.NetTotal;
-      this.Registration.Quantity=0;
-      this.Registration.Quantity=data.Quantity;
-      this.Registration.NetTotal=data.Price*data.Quantity;
-      this.Registration.ModifiedUser=this.UserID;
-      this.Registration.ProductRegID=data.ProductRegID;
-     
-      console.log('test reg',this.Registration);
-    
-       this.ProductRegistrationService.SaveRegistration(this.Registration)
+  async Checkout() {
+    for (const data of this.CartData) {
+      this.Registration.ProductID = data.ProductID;
+      this.Registration.NetTotal = data.Price * data.Quantity;
+      this.Registration.Quantity = data.Quantity;
+      this.Registration.ModifiedUser = this.UserID;
+      this.Registration.CartItemID = data.CartItemID;
+  
+      this.ProductRegistrationService.SaveRegistration(this.Registration)
         .subscribe((data) => {
-          console.log(data);
           let resp = new SaveResponse();
           resp = data;
-          debugger;
           if (resp.Saved == true) {
-           // alert("Added To cart!");
-            console.log('added');
+            console.log('Cart item updated');
+          }
+        });
+    }
+  
+    this.router.navigate(['checkout']);
+  }
+  
+
+  //   debugger;
+  //   this.CartData.forEach((data)=>{
+
+  //     this.Registration.ProductID=data.ProductID;
+  //     this.Registration.NetTotal =data.NetTotal;
+  //     this.Registration.Quantity=0;
+  //     this.Registration.Quantity=data.Quantity;
+  //     this.Registration.NetTotal=data.Price*data.Quantity;
+  //     this.Registration.ModifiedUser=this.UserID;
+  //     this.Registration.cartItemID=data.cartItemID;
+     
+  //     console.log('test reg',this.Registration);
+    
+  //      this.ProductRegistrationService.SaveRegistration(this.Registration)
+  //       .subscribe((data) => {
+  //         console.log(data);
+  //         let resp = new SaveResponse();
+  //         resp = data;
+  //         debugger;
+  //         if (resp.Saved == true) {
+  //          // alert("Added To cart!");
+  //           console.log('added');
     
            
-          }
-        })
+  //         }
+  //       })
       
 
-    })
+  //   })
 
-    this.router.navigate(['checkout']);
+  //   this.router.navigate(['checkout']);
       
+  //   }
+
+  DeleteCartItem(CartItemID: number) {
+    this.ProductRegistrationService
+      .DeleteCartItem(CartItemID)
+      .subscribe(async (data: any) => {
+        let response: SaveResponse = new SaveResponse();
+        response = data;
+        console.log('response', response);
+        if (response.Saved == true) {
+          alert("Item Deleted!");
+           await this.getCart();
+        }
+      });
+  }
     
-    }
+
+
+    
 }

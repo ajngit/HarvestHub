@@ -26,7 +26,7 @@ export class DetailsComponent {
   state$: Observable<any> | undefined;
   Registration: Registration = new Registration();
   Review : Review= new Review();
-  ProductRegID: any;
+  cartItemID: any;
   UserID: any;
   ProductRegDetails: Registration[] = [];
   ReviewList:Review[]=[];
@@ -49,31 +49,10 @@ export class DetailsComponent {
     });
 
     this.UserID = JSON.parse(this.getUserID(), this.UserID);
-    const productRegIDString = this.getProductRegID();
-    if (productRegIDString) {
-        try {
-            this.ProductRegID = JSON.parse(productRegIDString);
-        } catch (error) {
-            console.error('Error parsing JSON:', error);
-            this.ProductRegID = 0; // Default value in case of error
-        }
-    } else {
-        this.ProductRegID = 0; // Default value if the string is empty or null
-    }
-    this.Registration.Quantity=0;
-    console.log('ProductID',this.ProductID);
-    console.log('UserID',this.UserID);
-    console.log('ProductRegID',this.ProductRegID );
     
     if (this.ProductID && this.ProductID > 0) {
       await this.GetProductDetails();
       await this.GetReviews();
-    }
-
-
-    if (this.ProductRegID && this.ProductRegID > 0) {
-      await this.GetProductDetailsByRegID();
-      this.Registration.Quantity=0;
     }
   }
 
@@ -84,17 +63,6 @@ export class DetailsComponent {
 closeModal() {
     $('#exampleModal').modal('hide');
 }
-
-  getProductRegID(): string {
-    let ProductRegID = localStorage.getItem('ProductRegID');
-    if (ProductRegID) {
-      return ProductRegID;
-    } else {
-      this.ProductRegID=0;
-      return '';
-    }
-
-  }
 
   getUserID(): string {
     let UserID = localStorage.getItem('UserID');
@@ -140,8 +108,8 @@ closeModal() {
     debugger;
     this.Registration.ProductID = this.ProductID;
     this.Registration.ModifiedUser = this.UserID;
-    if(this.ProductRegID){
-      this.Registration.ProductRegID = this.ProductRegID;
+    if(this.cartItemID){
+      this.Registration.CartItemID = this.cartItemID;
     }
    // this.Registration.Calculate(this.ProductDetails);
     this.Registration.NetTotal=this.ProductDetails.Price*this.Registration.Quantity;
@@ -156,8 +124,8 @@ closeModal() {
         if (resp.Saved == true) {
          // alert("Added To cart!");
           console.log('added');
-          this.ProductRegID = resp.ID;
-          localStorage.setItem('ProductRegID', JSON.stringify(this.ProductRegID));
+          this.cartItemID = resp.ID;
+          localStorage.setItem('cartItemID', JSON.stringify(this.cartItemID));
 
           this.router.navigate(['cart']);
         }
@@ -165,29 +133,6 @@ closeModal() {
 
 
   }
-
-
-  async GetProductDetailsByRegID() {
-    await this.ProductRegistrationService.GetProductByRegID(this.ProductRegID).subscribe((data) => {
-      console.log('prdata', data);
-
-      this.ProductRegDetails = data;
-      if(data){
-         this.ProductRegDetails.forEach((data) => {
-         if( data.ProductID == this.ProductID && this.ProductRegID==data.ProductRegID){
-          this.Registration=data;
-         }
-        });
-      }
-      
-      if (!this.ProductDetails) {
-        this.ProductRegDetails = [];
-        this.Registration = new Registration();
-      }
-    })
-
-  }
-
 
   async SubmitReview() {
     this.Review.ProductID = this.ProductID;
@@ -236,5 +181,8 @@ closeModal() {
     }
 
   }
+
+ 
+  
 
 }

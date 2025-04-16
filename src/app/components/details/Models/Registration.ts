@@ -2,7 +2,7 @@ import { ProductDetail } from "../../../Models/ProductDetail";
 
 
 export class Registration{
-    ProductRegID : number =0 ;
+    CartItemID : number =0 ;
     ProductID    : number =0 ;
     Quantity     : number =0 ;
     Discount     : number =0 ;

@@ -35,6 +35,10 @@
            
                 <div class="row">
                     <div class="col-sm-8 col-md-8 col-lg-8">
+                        <div *ngIf="!CartData || CartData.length === 0" class="text-center text-muted my-5 " >
+                            <h4 style="margin-top: 100px;">Your cart is empty 🛒</h4>
+                            <p>Start adding fresh fruits and vegetables to your bag!</p>
+                          </div>
                         <div class="items">
                            
                             <div class="product card shadow" *ngFor="let data of this.CartData">
@@ -63,8 +67,11 @@
                                                     <label for="quantity">Quantity:</label>(Kg)
                                                     <input id="quantity"  type="number" [(ngModel)]="data.Quantity" (ngModelChange)="Quantitychange(data)"  class="form-control quantity-input">
                                                 </div>
-                                                <div class="col-md-3 price">
-                                                    <span> ₹{{data.NetTotal}}</span>
+                                                <div class="col-md-2 price">
+                                                    <span> ₹{{data.Quantity*data.Price}}</span>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <i class="fa fa-trash mt-4" (click)="DeleteCartItem(data.CartItemID)" aria-hidden="true" style="color: red;"></i>
                                                 </div>
                                             </div>
                                         </div>

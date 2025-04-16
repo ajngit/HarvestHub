@@ -36,7 +36,7 @@ export class PaymentComponent {
 
   ngOnInit() {
     this.UserID = JSON.parse(this.getUserID(), this.UserID);
-    this.ProductRegID = JSON.parse(this.getProductRegID(), this.ProductRegID);
+    //this.ProductRegID = JSON.parse(this.getProductRegID(), this.ProductRegID);
     this.getCart();
   }
 
@@ -69,7 +69,7 @@ export class PaymentComponent {
       }
       else {
         this.CartData.forEach((data) => {
-          this.SubTotal += data.NetTotal;
+          this.SubTotal += data.Price*data.Quantity;
         })
       }
     })
@@ -86,28 +86,42 @@ export class PaymentComponent {
     if (this.PaymentData.CardNumber == '123456789' && this.PaymentData.CVV == 123 && this.PaymentData.Expiry == '01/26') {
 
 
-
-
-      this.PaymentData.ProductRegID = this.ProductRegID;
-      this.PaymentData.PaymentType = 'CARD';
-      this.PaymentData.NetTotal = this.SubTotal + 40;
-      this.PaymentData.ModifiedUser = this.UserID;
-
-      console.log(this.PaymentData);
-
-
-      await this.ProductRegistrationService.SaveOrder(this.PaymentData).subscribe((data) => {
-        console.log(data);
-        let resp = new SaveResponse();
-        resp = data;
-        if (resp.Saved == true) {
-         // alert("Payment Success!");
-          this.Submitted=false;
-          this.errormsg ='';
-          this.router.navigate(['order'], { state: { orderID: resp.ID } });
-
+      const orderItems = this.CartData.map((item) => {
+        return {
+          ProductID: item.ProductID,
+          Quantity: item.Quantity,
+          Price: item.Price
+        };
+      });
+    
+      const orderPayload = {
+        UserID: this.UserID,
+        TotalAmount: this.SubTotal ,
+        DeliveryAddress: 'Green Villa, Kochi', // or get from user profile/input
+        CreatedBy: this.UserID,
+        Items: orderItems
+      };
+    
+      console.log('Order Payload:', orderPayload);
+    
+      this.ProductRegistrationService.SaveOrderWithItems(orderPayload).subscribe(
+        (data) => {
+          let resp = new SaveResponse();
+          resp = data;
+          if (resp.Saved == true) {
+            console.log('Order placed successfully');
+            this.router.navigate(['order'], { state: { orderID: resp.ID } });        } else {
+            console.log('Order failed:', resp.Status);
+            alert('Order Failed. Try again.');
+          }
+        },
+        (error) => {
+          console.error('Order Error:', error);
+          alert('An error occurred while placing the order.');
         }
-      })
+      );
+
+      
 
     }else{
       this.errormsg ='wrong credentials';
@@ -140,5 +154,7 @@ export class PaymentComponent {
       return true;
     }
   }
+
+  
 
 }
